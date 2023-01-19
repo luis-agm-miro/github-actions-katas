@@ -35,8 +35,8 @@ jobs:
         with: 
           name: code
           path: .
-      - name: List Files
-        run: ls .
+      - name: List Files in app/build/libs
+        run: ls app/build/libs
   Docker-image:
     runs-on: ubuntu-latest
     needs: [Build]
@@ -46,6 +46,8 @@ jobs:
         with:
           name: code
           path: .
+      - name: List Files in app/build/libs
+        run: ls app/build/libs
       - name: build docker
         run: chmod +x ci/build-docker.sh && ci/build-docker.sh
       - name: push docker
