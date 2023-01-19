@@ -11,5 +11,5 @@ jobs:
         run: ci/build-app.sh
       - name: Test the app
         run: ci/unit-test-app.sh
-      - name: Awesomeness step
-        run: echo "Wololo!"
+      - name: Random quote
+        run: curl api.quotable.io/random | jq .content
