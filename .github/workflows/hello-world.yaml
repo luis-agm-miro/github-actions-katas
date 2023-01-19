@@ -11,6 +11,11 @@ jobs:
         run: ci/build-app.sh
       - name: Test the app
         run: ci/unit-test-app.sh
+      - name: Upload Repo
+        uses: actions/upload-artifact@v3
+        with: 
+          name: code
+          path: .
   random-quote:
     runs-on: ubuntu-latest
     steps:
