@@ -1,12 +1,27 @@
-name: Training Action
+name: JAVA CI
 on: push
 jobs:
-  run-the-scripts:
+  Clone-down:
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
     steps:
-      - name: Clone-down
-        uses: actions/checkout@v3  
+      - name: Clone repo
+        uses: actions/checkout@v3 
+      - name: Upload Repo
+        uses: actions/upload-artifact@v3
+        with: 
+          name: code
+          path: . 
+  Build:
+    runs-on: ubuntu-latest
+    container: gradle:6-jdk11
+    needs: Clone-down
+    steps:
+      - name: Download code
+        uses: actions/checkout@v3 
+        with:
+          name: code
+          path: .
       - name: Build the app
         run: ci/build-app.sh
       - name: Test the app
@@ -16,7 +31,7 @@ jobs:
         with: 
           name: code
           path: .
-  random-quote:
+  Random-quote:
     runs-on: ubuntu-latest
     steps:
       - name: Install jq
