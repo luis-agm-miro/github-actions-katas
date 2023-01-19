@@ -1,7 +1,7 @@
-name: hello-world
+name: Training Action
 on: push
 jobs:
-  my-job:
+  run-the-scripts:
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
     steps:
@@ -11,3 +11,5 @@ jobs:
         run: ci/build-app.sh
       - name: Test the app
         run: ci/unit-test-app.sh
+      - name: Awesomeness step
+        run: echo "Wololo!"
