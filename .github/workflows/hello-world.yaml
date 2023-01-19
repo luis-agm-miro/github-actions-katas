@@ -55,7 +55,7 @@ jobs:
           path: .
 
       - name: List Files in app/build/libs
-        run: ls app/build/libs
+        run: ls .
 
       - name: build docker
         run: chmod +x ci/build-docker.sh && ci/build-docker.sh
