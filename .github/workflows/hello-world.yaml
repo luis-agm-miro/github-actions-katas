@@ -34,7 +34,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with: 
           name: code
-          path: app/build/libs/app-0.1-all.jar
+          path: .
+      - name: List Files
+        run: ls .
   Docker-image:
     runs-on: ubuntu-latest
     needs: [Build]
@@ -43,7 +45,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: code
-          path: app/build/libs/app-0.1-all.jar
+          path: .
       - name: build docker
         run: ci/build-docker.sh
       - name: push docker
