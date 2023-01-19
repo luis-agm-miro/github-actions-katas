@@ -30,11 +30,11 @@ jobs:
         run: ci/build-app.sh
       - name: Test the app
         run: ci/unit-test-app.sh
-      - name: Upload Repo
+      - name: Upload build result
         uses: actions/upload-artifact@v3
         with: 
           name: code
-          path: .
+          path: app/build/libs/app-0.1-all.jar
       - name: List Files
         run: ls .
   Docker-image:
@@ -47,9 +47,9 @@ jobs:
           name: code
           path: .
       - name: build docker
-        run: ci/build-docker.sh
+        run: chmod +x ci/build-docker.sh && ci/build-docker.sh
       - name: push docker
-        run: ci/push-docker.sh
+        run: chmod +x ci/push-docker.sh && ci/push-docker.sh
   Random-quote:
     runs-on: ubuntu-latest
     steps:
