@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with: 
           name: code
-          path: app/build/libs/app-0.1-all.jar
+          path: .
       - name: List Files
         run: ls .
   Docker-image:
