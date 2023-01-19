@@ -1,8 +1,8 @@
 name: JAVA CI
 on: push
 env:
-  docker_username: ${{ secrets.DOCKER_USER }}
-  docker_password: ${{ secrets.DOCKER_PW }}
+  docker_username: ${{ github.actor }}
+  docker_password: ${{ secrets.GITHUB_TOKEN }}
   GIT_COMMIT: ${{ github.sha }}
 jobs:
   Clone-down:
@@ -35,11 +35,11 @@ jobs:
       - name: Test the app
         run: ci/unit-test-app.sh
 
-      - name: Upload build result
+      - name: Upload the whole thing
         uses: actions/upload-artifact@v3
         with: 
-          name: built-app
-          path: app/build/libs
+          name: code
+          path: .
 
       - name: List Files in app/build/libs
         run: ls app/build/libs
@@ -53,12 +53,6 @@ jobs:
         with:
           name: code
           path: .
-
-      - name: Download built-app
-        uses: actions/download-artifact@v3
-        with:
-          name: built-app
-          path: /app/build/libs
 
       - name: List Files in app/build/libs
         run: ls app/build/libs
